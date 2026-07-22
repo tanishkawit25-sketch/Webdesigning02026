@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Student Profile</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, sans-serif;
+            background:#f4f4f4;
+            color:#333;
+            line-height:1.6;
+        }
+
+        header{
+            background:#0077cc;
+            color:white;
+            text-align:center;
+            padding:20px;
+        }
+
+        nav{
+            margin-top:10px;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin:0 15px;
+            font-weight:bold;
+        }
+
+        nav a:hover{
+            text-decoration:underline;
+        }
+
+        .container{
+            width:80%;
+            margin:20px auto;
+            background:white;
+            padding:25px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+        }
+
+        section{
+            margin-bottom:35px;
+        }
+
+        h2{
+            color:#0077cc;
+            margin-bottom:15px;
+            border-bottom:2px solid #0077cc;
+            display:inline-block;
+            padding-bottom:5px;
+        }
+
+        /* Profile Section */
+        .profile{
+            display:flex;
+            align-items:center;
+            gap:30px;
+            margin-top:20px;
+            flex-wrap:wrap;
+        }
+
+        .profile-img{
+            width:180px;
+            height:220px;
+            object-fit:cover;
+            border:4px solid #0077cc;
+            border-radius:10px;
+            box-shadow:0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .profile-info{
+            flex:1;
+        }
+
+        .profile-info h3{
+            color:#0077cc;
+            margin-bottom:15px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:15px;
+        }
+
+        table,th,td{
+            border:1px solid #999;
+        }
+
+        th{
+            background:#0077cc;
+            color:white;
+        }
+
+        th,td{
+            padding:10px;
+            text-align:center;
+        }
+
+        ul{
+            margin-left:25px;
+        }
+
+        li{
+            margin:8px 0;
+        }
+
+        footer{
+            background:#0077cc;
+            color:white;
+            text-align:center;
+            padding:15px;
+            margin-top:20px;
+        }
+
+        @media(max-width:768px){
+
+            .container{
+                width:95%;
+            }
+
+            .profile{
+                flex-direction:column;
+                text-align:center;
+            }
+
+            .profile-img{
+                width:160px;
+                height:200px;
+            }
+
+            nav a{
+                display:block;
+                margin:8px 0;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Professional Student Profile</h1>
+
+        <nav>
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#hobbies">Hobbies</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <!-- About Section -->
+        <section id="about">
+
+            <h2>About Me</h2>
+
+            <div class="profile">
+
+                <!-- Replace sakshi.jpg with your image name -->
+                <img src="passport jpg.jpeg" alt="Tanishka Wankhede" class="profile-img">
+
+                <div class="profile-info">
+
+                    <h3>Tanishka Wankhede</h3>
+
+                    <p><strong>Name:</strong>Tanishka Wankhede</p>
+
+                    <p><strong>Course:</strong> Bachelor of Technology (Information Technology)</p>
+
+                    <p><strong>College:</strong> SBJITMR</p>
+
+                    <p><strong>Career Objective:</strong> To secure a challenging position in the IT industry where I can apply my technical skills and continue learning.</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Education -->
+        <section id="education">
+
+            <h2>Education Details</h2>
+
+            <table>
+
+                <tr>
+                    <th>Qualification</th>
+                    <th>Institution</th>
+                    <th>Year</th>
+                    <th>Percentage / CGPA</th>
+                </tr>
+
+                <tr>
+                    <td>B.Tech (IT)</td>
+                    <td>SBJITMR</td>
+                    <td>2026</td>
+                    <td>6.95 CGPA</td>
+                </tr>
+
+                <tr>
+                    <td>Class XII</td>
+                    <td>Tip Top Convent</td>
+                    <td>2025</td>
+                    <td>61%</td>
+                </tr>
+
+                <tr>
+                    <td>Class X</td>
+                    <td>All Saints High School</td>
+                    <td>2023</td>
+                    <td>73%</td>
+                </tr>
+
+            </table>
+
+        </section>
+
+        <!-- Hobbies -->
+        <section id="hobbies">
+
+            <h2>Hobbies</h2>
+
+            <ul>
+                <li>Programming</li>
+                <li>Reading Technology Blogs</li>
+                <li>Dancing</li>
+                <li>Photography</li>
+                <li>Listening to Music</li>
+            </ul>
+
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+
+            <h2>Contact Information</h2>
+
+            <p><strong>Email:</strong> tanishkawankhede89@gmail.com</p>
+
+            <p><strong>Phone:</strong> +91 8459296004</p>
+
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Tanishka Wankhede | Professional Student Profile</p>
+    </footer>
+
+</body>
+</html>
