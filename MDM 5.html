@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Product Showcase</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body{
+            background: linear-gradient(to right,#eef2ff,#ffffff);
+        }
+
+        .card:hover{
+            transform: translateY(-10px);
+        }
+
+        .card{
+            transition:0.4s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="bg-indigo-700 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+            <h1 class="text-2xl font-bold">Nova Store</h1>
+
+            <div class="space-x-6 hidden md:flex">
+                <a href="#" class="hover:text-yellow-300">Home</a>
+                <a href="#" class="hover:text-yellow-300">Products</a>
+                <a href="#" class="hover:text-yellow-300">Offers</a>
+                <a href="#" class="hover:text-yellow-300">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center px-6 py-12 gap-8">
+
+        <div class="flex-1">
+            <h2 class="text-5xl font-bold text-gray-800 leading-tight">
+                Discover Our <span class="text-indigo-600">Latest Collection</span>
+            </h2>
+
+            <p class="mt-5 text-gray-600 text-lg">
+                Upgrade your lifestyle with premium gadgets designed for
+                performance, comfort, and style.
+            </p>
+
+            <button class="mt-6 bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-full">
+                Shop Now
+            </button>
+        </div>
+
+        <div class="flex-1">
+            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80"
+                 class="rounded-2xl shadow-2xl w-full"
+                 alt="Hero Image">
+        </div>
+
+    </section>
+
+    <!-- Products -->
+    <section class="max-w-7xl mx-auto px-6 py-10">
+
+        <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">
+            Trending Products
+        </h2>
+
+        <div class="flex flex-wrap justify-center gap-8">
+
+            <!-- Card 1 -->
+            <div class="card bg-white rounded-xl shadow-xl overflow-hidden w-full sm:w-80">
+
+                <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=800&q=80"
+                     class="w-full h-56 object-cover">
+
+                <div class="p-5">
+
+                    <h3 class="text-2xl font-bold">Smart Watch</h3>
+
+                    <p class="text-gray-600 mt-2">
+                        Track your fitness, calls and notifications with style.
+                    </p>
+
+                    <div class="flex justify-between items-center mt-5">
+
+                        <span class="text-indigo-600 text-xl font-bold">
+                            ₹4,999
+                        </span>
+
+                        <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg">
+                            Buy
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card bg-white rounded-xl shadow-xl overflow-hidden w-full sm:w-80">
+
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80"
+                     class="w-full h-56 object-cover">
+
+                <div class="p-5">
+
+                    <h3 class="text-2xl font-bold">Wireless Headphones</h3>
+
+                    <p class="text-gray-600 mt-2">
+                        Crystal-clear sound with active noise cancellation.
+                    </p>
+
+                    <div class="flex justify-between items-center mt-5">
+
+                        <span class="text-indigo-600 text-xl font-bold">
+                            ₹3,499
+                        </span>
+
+                        <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg">
+                            Buy
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card bg-white rounded-xl shadow-xl overflow-hidden w-full sm:w-80">
+
+                <img src="https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=800&q=80"
+                     class="w-full h-56 object-cover">
+
+                <div class="p-5">
+
+                    <h3 class="text-2xl font-bold">Bluetooth Speaker</h3>
+
+                    <p class="text-gray-600 mt-2">
+                        Portable speaker delivering rich bass and clear sound.
+                    </p>
+
+                    <div class="flex justify-between items-center mt-5">
+
+                        <span class="text-indigo-600 text-xl font-bold">
+                            ₹2,299
+                        </span>
+
+                        <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg">
+                            Buy
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-indigo-700 text-white text-center py-5 mt-12">
+        <p>© 2026 Nova Store | Designed with Tailwind CSS & Flexbox</p>
+    </footer>
+
+</body>
+</html>
