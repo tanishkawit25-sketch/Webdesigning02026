@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Product Showcase</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header -->
+    <header class="bg-blue-600 text-white p-5 text-center">
+        <h1 class="text-3xl font-bold">New Product Collection</h1>
+        <p class="mt-2">Explore our latest arrivals</p>
+    </header>
+
+    <!-- Product Section -->
+    <section class="max-w-7xl mx-auto p-6">
+        <div class="flex flex-wrap justify-center gap-6">
+
+            <!-- Product Card 1 -->
+            <div class="bg-white rounded-lg shadow-lg w-full sm:w-72 p-4">
+                <img src="https://via.placeholder.com/300x200"
+                     alt="Product 1"
+                     class="rounded-md w-full">
+                <h2 class="text-xl font-semibold mt-3">Wireless Headphones</h2>
+                <p class="text-gray-600 mt-2">Premium sound quality with noise cancellation.</p>
+                <p class="text-blue-600 font-bold mt-3">₹2,999</p>
+                <button class="bg-blue-600 text-white px-4 py-2 rounded mt-4 hover:bg-blue-700 w-full">
+                    Buy Now
+                </button>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="bg-white rounded-lg shadow-lg w-full sm:w-72 p-4">
+                <img src="https://via.placeholder.com/300x200"
+                     alt="Product 2"
+                     class="rounded-md w-full">
+                <h2 class="text-xl font-semibold mt-3">Smart Watch</h2>
+                <p class="text-gray-600 mt-2">Track fitness, heart rate, and notifications.</p>
+                <p class="text-blue-600 font-bold mt-3">₹4,499</p>
+                <button class="bg-blue-600 text-white px-4 py-2 rounded mt-4 hover:bg-blue-700 w-full">
+                    Buy Now
+                </button>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="bg-white rounded-lg shadow-lg w-full sm:w-72 p-4">
+                <img src="https://via.placeholder.com/300x200"
+                     alt="Product 3"
+                     class="rounded-md w-full">
+                <h2 class="text-xl font-semibold mt-3">Bluetooth Speaker</h2>
+                <p class="text-gray-600 mt-2">Portable speaker with powerful bass.</p>
+                <p class="text-blue-600 font-bold mt-3">₹1,999</p>
+                <button class="bg-blue-600 text-white px-4 py-2 rounded mt-4 hover:bg-blue-700 w-full">
+                    Buy Now
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center p-4 mt-8">
+        © 2026 Product Showcase. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
