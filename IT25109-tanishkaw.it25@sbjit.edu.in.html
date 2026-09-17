@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TeamSphere - Dynamic Team Directory</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+
+        /* ---------- BODY ---------- */
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #080d1c;
+            color: white;
+        }
+
+
+        /* ---------- LOGO ---------- */
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-weight: bold;
+            font-size: 18px;
+
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.5);
+        }
+
+
+        /* ---------- HERO ---------- */
+
+        .hero {
+            min-height: 500px;
+
+            background:
+                radial-gradient(
+                    circle at 15% 30%,
+                    rgba(139, 92, 246, 0.3),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 85% 40%,
+                    rgba(236, 72, 153, 0.25),
+                    transparent 30%
+                );
+        }
+
+
+        /* ---------- GRADIENT TEXT ---------- */
+
+        .gradient-text {
+            background: linear-gradient(
+                90deg,
+                #a78bfa,
+                #f472b6,
+                #38bdf8
+            );
+
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+
+        /* ---------- STAT CARDS ---------- */
+
+        .stat-card {
+            padding: 25px;
+
+            border-radius: 20px;
+
+            background: rgba(255,255,255,0.06);
+
+            border: 1px solid rgba(255,255,255,0.1);
+
+            backdrop-filter: blur(10px);
+
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-7px);
+
+            border-color: #a855f7;
+
+            box-shadow: 0 10px 30px rgba(139,92,246,0.2);
+        }
+
+
+        /* ---------- LEADER ---------- */
+
+        .leader-card {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            padding: 25px 35px;
+
+            border-radius: 25px;
+
+            background: rgba(255,255,255,0.06);
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            transition: 0.3s;
+        }
+
+        .leader-card:hover {
+            transform: scale(1.04);
+
+            box-shadow: 0 15px 40px rgba(139,92,246,0.2);
+        }
+
+
+        /* ---------- DEPARTMENT CARDS ---------- */
+
+        .department-card {
+            padding: 30px;
+
+            border-radius: 22px;
+
+            border: 1px solid rgba(255,255,255,0.1);
+
+            transition: 0.3s;
+        }
+
+        .department-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .technology {
+            background: linear-gradient(
+                135deg,
+                rgba(124,58,237,0.35),
+                rgba(124,58,237,0.05)
+            );
+        }
+
+        .design {
+            background: linear-gradient(
+                135deg,
+                rgba(236,72,153,0.35),
+                rgba(236,72,153,0.05)
+            );
+        }
+
+        .marketing {
+            background: linear-gradient(
+                135deg,
+                rgba(14,165,233,0.35),
+                rgba(14,165,233,0.05)
+            );
+        }
+
+
+        /* ---------- SEARCH AREA ---------- */
+
+        .search-area {
+            background: rgba(255,255,255,0.05);
+
+            border: 1px solid rgba(255,255,255,0.1);
+
+            backdrop-filter: blur(15px);
+        }
+
+        .input-box {
+            width: 100%;
+
+            padding: 14px 18px;
+
+            border-radius: 12px;
+
+            background: #111827;
+
+            border: 1px solid #334155;
+
+            color: white;
+
+            outline: none;
+        }
+
+        .input-box:focus {
+            border-color: #a855f7;
+
+            box-shadow: 0 0 15px rgba(168,85,247,0.25);
+        }
+
+
+        /* ---------- MEMBER CARD ---------- */
+
+        .member-card {
+            padding: 25px;
+
+            border-radius: 22px;
+
+            background: rgba(255,255,255,0.05);
+
+            border: 1px solid rgba(255,255,255,0.1);
+
+            transition: 0.3s;
+
+            cursor: pointer;
+        }
+
+        .member-card:hover {
+            transform: translateY(-8px);
+
+            border-color: #a855f7;
+
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+
+        /* ---------- MODAL ---------- */
+
+        .modal {
+            background: rgba(0,0,0,0.75);
+
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-box {
+            position: relative;
+
+            width: 90%;
+
+            max-width: 450px;
+
+            padding: 35px;
+
+            border-radius: 25px;
+
+            background: #111827;
+
+            border: 1px solid rgba(255,255,255,0.15);
+
+            box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+
+            animation: popup 0.3s ease;
+        }
+
+
+        /* ---------- POPUP ANIMATION ---------- */
+
+        @keyframes popup {
+
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================================================= -->
+<!-- NAVBAR -->
+<!-- ================================================= -->
+
+<nav class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-xl border-b border-white/10">
+
+    <div class="max-w-7xl mx-auto px-6 py-4
+                flex justify-between items-center">
+
+        <div class="flex items-center gap-3">
+
+            <div class="logo">
+                TS
+            </div>
+
+            <div>
+
+                <h1 class="font-bold text-xl">
+                    TeamSphere
+                </h1>
+
+                <p class="text-xs text-slate-400">
+                    Dynamic Team Directory
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button
+            onclick="scrollToTeam()"
+            class="hidden md:block
+                   bg-gradient-to-r from-purple-600 to-pink-600
+                   px-5 py-2 rounded-full
+                   font-semibold
+                   hover:scale-105 transition">
+
+            Explore Team
+
+        </button>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================================================= -->
+<!-- HERO SECTION -->
+<!-- ================================================= -->
+
+<section class="hero flex items-center">
+
+    <div class="max-w-7xl mx-auto px-6 py-24 w-full">
+
+        <div class="max-w-3xl">
+
+            <div class="
+                inline-block
+                px-4 py-2
+                rounded-full
+                bg-purple-500/10
+                border border-purple-400/30
+                text-purple-300
+                mb-6">
+
+                ✨ Dynamic Organization Directory
+
+            </div>
+
+
+            <h2 class="
+                text-5xl
+                md:text-7xl
+                font-black
+                leading-tight">
+
+                Meet the
+
+                <span class="gradient-text">
+                    People
+                </span>
+
+                Behind Our Success.
+
+            </h2>
+
+
+            <p class="
+                text-slate-400
+                text-lg
+                mt-6
+                max-w-2xl">
+
+                Explore our organization, discover different
+                departments and learn more about every team member.
+
+            </p>
+
+
+            <div class="flex flex-wrap gap-4 mt-8">
+
+                <button
+                    onclick="scrollToTeam()"
+                    class="
+                    bg-gradient-to-r
+                    from-purple-600
+                    to-pink-600
+                    px-7 py-3
+                    rounded-xl
+                    font-bold
+                    hover:-translate-y-1
+                    transition">
+
+                    🚀 Explore Team
+
+                </button>
+
+
+                <button
+                    onclick="showAllMembers()"
+                    class="
+                    border
+                    border-white/20
+                    px-7 py-3
+                    rounded-xl
+                    hover:bg-white/10
+                    transition">
+
+                    View All Members
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================= -->
+<!-- STATISTICS -->
+<!-- ================================================= -->
+
+<section class="max-w-7xl mx-auto px-6 -mt-10 relative z-10">
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+
+        <div class="stat-card">
+
+            <div class="text-3xl">
+                👥
+            </div>
+
+            <h3
+                id="totalMembers"
+                class="text-3xl font-bold mt-2">
+                0
+            </h3>
+
+            <p class="text-slate-400">
+                Team Members
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="text-3xl">
+                🏢
+            </div>
+
+            <h3
+                id="totalDepartments"
+                class="text-3xl font-bold mt-2">
+                0
+            </h3>
+
+            <p class="text-slate-400">
+                Departments
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="text-3xl">
+                💼
+            </div>
+
+            <h3 class="text-3xl font-bold mt-2">
+                12+
+            </h3>
+
+            <p class="text-slate-400">
+                Projects
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="text-3xl">
+                ⭐
+            </div>
+
+            <h3 class="text-3xl font-bold mt-2">
+                98%
+            </h3>
+
+            <p class="text-slate-400">
+                Satisfaction
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================= -->
+<!-- ORGANIZATIONAL CHART -->
+<!-- ================================================= -->
+
+<section class="max-w-7xl mx-auto px-6 py-24">
+
+    <div class="text-center mb-12">
+
+        <p class="text-purple-400 font-bold">
+            OUR ORGANIZATION
+        </p>
+
+        <h2 class="text-4xl font-bold mt-2">
+            Organizational Chart
+        </h2>
+
+        <p class="text-slate-400 mt-3">
+            Understand how our teams are connected.
+        </p>
+
+    </div>
+
+
+
+    <!-- CEO -->
+
+    <div class="flex justify-center mb-10">
+
+        <div class="leader-card">
+
+            <div class="
+                w-20 h-20
+                rounded-full
+                bg-gradient-to-br
+                from-purple-500
+                to-pink-500
+                flex items-center
+                justify-center
+                text-3xl">
+
+                👨‍💼
+
+            </div>
+
+
+            <div>
+
+                <h3 class="text-xl font-bold">
+                    Alex Sharma
+                </h3>
+
+                <p class="text-purple-300">
+                    Chief Executive Officer
+                </p>
+
+                <p class="text-green-400 text-sm mt-1">
+                    ● Online
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Departments -->
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+
+        <div class="department-card technology">
+
+            <div class="text-5xl">
+                💻
+            </div>
+
+            <h3 class="text-2xl font-bold mt-5">
+                Technology
+            </h3>
+
+            <p class="text-slate-400 mt-2">
+                Software & Development
+            </p>
+
+        </div>
+
+
+        <div class="department-card design">
+
+            <div class="text-5xl">
+                🎨
+            </div>
+
+            <h3 class="text-2xl font-bold mt-5">
+                Design
+            </h3>
+
+            <p class="text-slate-400 mt-2">
+                UI/UX & Creative Team
+            </p>
+
+        </div>
+
+
+        <div class="department-card marketing">
+
+            <div class="text-5xl">
+                📢
+            </div>
+
+            <h3 class="text-2xl font-bold mt-5">
+                Marketing
+            </h3>
+
+            <p class="text-slate-400 mt-2">
+                Growth & Communication
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================= -->
+<!-- TEAM DIRECTORY -->
+<!-- ================================================= -->
+
+<section
+    id="teamSection"
+    class="max-w-7xl mx-auto px-6 pb-24">
+
+
+    <div class="text-center mb-10">
+
+        <p class="text-pink-400 font-bold">
+            TEAM DIRECTORY
+        </p>
+
+        <h2 class="text-4xl font-bold mt-2">
+            Find Your Team
+        </h2>
+
+        <p class="text-slate-400 mt-3">
+            Search or filter team members.
+        </p>
+
+    </div>
+
+
+
+    <!-- SEARCH -->
+
+    <div class="search-area p-5 rounded-2xl mb-10">
+
+        <div class="grid md:grid-cols-3 gap-4">
+
+
+            <div class="md:col-span-2">
+
+                <input
+                    id="searchInput"
+                    class="input-box"
+                    type="text"
+                    placeholder="🔍 Search name or role..."
+                    onkeyup="displayMembers()">
+
+            </div>
+
+
+            <select
+                id="departmentFilter"
+                class="input-box"
+                onchange="displayMembers()">
+
+                <option value="All">
+                    All Departments
+                </option>
+
+                <option value="Technology">
+                    Technology
+                </option>
+
+                <option value="Design">
+                    Design
+                </option>
+
+                <option value="Marketing">
+                    Marketing
+                </option>
+
+                <option value="HR">
+                    HR
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MEMBER CARDS -->
+
+    <div
+        id="teamContainer"
+        class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================= -->
+<!-- MODAL -->
+<!-- ================================================= -->
+
+<div
+    id="memberModal"
+    class="
+        hidden
+        fixed inset-0
+        modal
+        items-center
+        justify-center
+        z-50
+        p-5">
+
+
+    <div class="modal-box">
+
+
+        <button
+            onclick="closeModal()"
+            class="
+                absolute
+                right-5 top-4
+                text-2xl
+                text-slate-400
+                hover:text-white">
+
+            ✕
+
+        </button>
+
+
+        <div id="modalContent">
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- FOOTER -->
+<!-- ================================================= -->
+
+<footer
+    class="
+        border-t
+        border-white/10
+        py-8
+        text-center
+        text-slate-500">
+
+    <p>
+        © 2026 TeamSphere | Dynamic Team Member Directory
+    </p>
+
+    <p class="text-sm mt-2">
+        HTML • Tailwind CSS • JavaScript
+    </p>
+
+</footer>
+
+
+
+<!-- ================================================= -->
+<!-- JAVASCRIPT -->
+<!-- ================================================= -->
+
+<script>
+
+
+/* =================================================
+   TEAM DATA
+================================================= */
+
+const team = [
+
+    {
+        name: "Priya Deshmukh",
+        role: "Frontend Developer",
+        department: "Technology",
+        email: "priya@teamsphere.com",
+        experience: "3 Years",
+        emoji: "👩‍💻",
+        color: "from-purple-500 to-indigo-500"
+    },
+
+
+    {
+        name: "Rahul Patil",
+        role: "Backend Developer",
+        department: "Technology",
+        email: "rahul@teamsphere.com",
+        experience: "4 Years",
+        emoji: "👨‍💻",
+        color: "from-blue-500 to-cyan-500"
+    },
+
+
+    {
+        name: "Sneha Kulkarni",
+        role: "UI/UX Designer",
+        department: "Design",
+        email: "sneha@teamsphere.com",
+        experience: "3 Years",
+        emoji: "👩‍🎨",
+        color: "from-pink-500 to-rose-500"
+    },
+
+
+    {
+        name: "Aman Joshi",
+        role: "Graphic Designer",
+        department: "Design",
+        email: "aman@teamsphere.com",
+        experience: "2 Years",
+        emoji: "🎨",
+        color: "from-orange-500 to-pink-500"
+    },
+
+
+    {
+        name: "Neha Sharma",
+        role: "Marketing Manager",
+        department: "Marketing",
+        email: "neha@teamsphere.com",
+        experience: "5 Years",
+        emoji: "📢",
+        color: "from-green-500 to-emerald-500"
+    },
+
+
+    {
+        name: "Vikas More",
+        role: "HR Manager",
+        department: "HR",
+        email: "vikas@teamsphere.com",
+        experience: "6 Years",
+        emoji: "🤝",
+        color: "from-yellow-500 to-orange-500"
+    }
+
+];
+
+
+
+/* =================================================
+   DISPLAY MEMBERS
+================================================= */
+
+function displayMembers() {
+
+    const container =
+        document.getElementById("teamContainer");
+
+
+    const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+
+    const department =
+        document
+        .getElementById("departmentFilter")
+        .value;
+
+
+    /* FILTER MEMBERS */
+
+    const filteredTeam =
+        team.filter(member => {
+
+
+            const searchMatch =
+
+                member.name
+                .toLowerCase()
+                .includes(search)
+
+                ||
+
+                member.role
+                .toLowerCase()
+                .includes(search);
+
+
+            const departmentMatch =
+
+                department === "All"
+
+                ||
+
+                member.department === department;
+
+
+            return searchMatch && departmentMatch;
+
+        });
+
+
+
+    /* CLEAR OLD CARDS */
+
+    container.innerHTML = "";
+
+
+
+    /* NO RESULT */
+
+    if (filteredTeam.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="col-span-full text-center py-16">
+
+                <div class="text-6xl">
+                    🔍
+                </div>
+
+                <h3 class="text-2xl font-bold mt-4">
+                    No Member Found
+                </h3>
+
+                <p class="text-slate-400 mt-2">
+                    Try another name or department.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+
+    /* CREATE CARDS */
+
+    filteredTeam.forEach(member => {
+
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "member-card";
+
+
+        card.onclick =
+            () => openModal(member);
+
+
+
+        card.innerHTML = `
+
+            <div class="flex items-center gap-4">
+
+
+                <div class="
+                    w-16 h-16
+                    rounded-2xl
+                    bg-gradient-to-br
+                    ${member.color}
+                    flex items-center
+                    justify-center
+                    text-3xl">
+
+                    ${member.emoji}
+
+                </div>
+
+
+                <div>
+
+                    <h3 class="text-lg font-bold">
+                        ${member.name}
+                    </h3>
+
+                    <p class="text-purple-300 text-sm">
+                        ${member.role}
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="
+                mt-6
+                flex
+                justify-between
+                items-center">
+
+
+                <span class="
+                    text-xs
+                    bg-white/10
+                    px-3 py-1
+                    rounded-full">
+
+                    ${member.department}
+
+                </span>
+
+
+                <span class="
+                    text-green-400
+                    text-xs">
+
+                    ● Available
+
+                </span>
+
+
+            </div>
+
+
+
+            <button class="
+                mt-5
+                w-full
+                py-2
+                rounded-xl
+                bg-white/5
+                hover:bg-purple-500/20
+                transition">
+
+                View Profile →
+
+            </button>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+
+/* =================================================
+   OPEN MODAL
+================================================= */
+
+function openModal(member) {
+
+
+    const modal =
+        document.getElementById("memberModal");
+
+
+    const content =
+        document.getElementById("modalContent");
+
+
+
+    content.innerHTML = `
+
+        <div class="text-center">
+
+
+            <div class="
+                mx-auto
+                w-24 h-24
+                rounded-full
+                bg-gradient-to-br
+                ${member.color}
+                flex items-center
+                justify-center
+                text-5xl">
+
+                ${member.emoji}
+
+            </div>
+
+
+            <h2 class="text-2xl font-bold mt-5">
+
+                ${member.name}
+
+            </h2>
+
+
+            <p class="text-purple-400">
+
+                ${member.role}
+
+            </p>
+
+
+            <span class="
+                inline-block
+                mt-3
+                bg-white/10
+                px-4 py-1
+                rounded-full
+                text-sm">
+
+                ${member.department}
+
+            </span>
+
+
+        </div>
+
+
+
+        <div class="mt-8 space-y-4">
+
+
+            <div class="
+                bg-white/5
+                p-4
+                rounded-xl">
+
+                📧
+
+                <b>Email:</b>
+
+                ${member.email}
+
+            </div>
+
+
+            <div class="
+                bg-white/5
+                p-4
+                rounded-xl">
+
+                💼
+
+                <b>Experience:</b>
+
+                ${member.experience}
+
+            </div>
+
+
+            <div class="
+                bg-white/5
+                p-4
+                rounded-xl">
+
+                🟢
+
+                <b>Status:</b>
+
+                Available
+
+            </div>
+
+
+        </div>
+
+    `;
+
+
+    modal.classList.remove("hidden");
+
+    modal.classList.add("flex");
+
+}
+
+
+
+/* =================================================
+   CLOSE MODAL
+================================================= */
+
+function closeModal() {
+
+    const modal =
+        document.getElementById("memberModal");
+
+
+    modal.classList.add("hidden");
+
+    modal.classList.remove("flex");
+
+}
+
+
+
+/* =================================================
+   CLOSE MODAL BY CLICKING OUTSIDE
+================================================= */
+
+document
+    .getElementById("memberModal")
+    .addEventListener("click", function(event) {
+
+        if (event.target === this) {
+
+            closeModal();
+
+        }
+
+    });
+
+
+
+/* =================================================
+   SCROLL TO TEAM
+================================================= */
+
+function scrollToTeam() {
+
+    document
+        .getElementById("teamSection")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+
+/* =================================================
+   SHOW ALL MEMBERS
+================================================= */
+
+function showAllMembers() {
+
+    document
+        .getElementById("searchInput")
+        .value = "";
+
+
+    document
+        .getElementById("departmentFilter")
+        .value = "All";
+
+
+    displayMembers();
+
+    scrollToTeam();
+
+}
+
+
+
+/* =================================================
+   STATISTICS
+================================================= */
+
+document
+    .getElementById("totalMembers")
+    .innerText = team.length;
+
+
+document
+    .getElementById("totalDepartments")
+    .innerText =
+    new Set(
+        team.map(member => member.department)
+    ).size;
+
+
+
+/* =================================================
+   LOAD MEMBERS WHEN PAGE OPENS
+================================================= */
+
+displayMembers();
+
+</script>
+
+
+</body>
+</html>
