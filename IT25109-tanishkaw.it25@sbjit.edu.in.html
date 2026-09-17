@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TeamSphere | Organizational Directory</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Background Shapes -->
+
+    <div class="background-shape shape-one"></div>
+    <div class="background-shape shape-two"></div>
+
+    <!-- NAVBAR -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+                <div class="logo-icon">T</div>
+
+                <div>
+                    <h2>TeamSphere</h2>
+                    <span>Team Directory</span>
+                </div>
+            </div>
+
+            <button class="team-btn" onclick="scrollToTeam()">
+                Explore Team →
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="badge">
+                ✨ OUR PEOPLE
+            </span>
+
+            <h1>
+                Meet the
+                <span>People</span>
+                Behind Our Success
+            </h1>
+
+            <p>
+                Explore our organizational structure and discover
+                talented professionals across different departments.
+            </p>
+
+            <button class="hero-btn" onclick="scrollToTeam()">
+                Explore Organization
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- STATISTICS -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon purple">
+                👥
+            </div>
+
+            <div>
+                <h2 id="totalMembers">8</h2>
+                <p>Team Members</p>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon blue">
+                🏢
+            </div>
+
+            <div>
+                <h2>4</h2>
+                <p>Departments</p>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon pink">
+                🚀
+            </div>
+
+            <div>
+                <h2>12+</h2>
+                <p>Projects</p>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon orange">
+                ⭐
+            </div>
+
+            <div>
+                <h2>98%</h2>
+                <p>Team Satisfaction</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DIRECTORY -->
+
+    <main id="team">
+
+        <div class="directory-heading">
+
+            <div>
+
+                <span class="small-title">
+                    ORGANIZATIONAL STRUCTURE
+                </span>
+
+                <h2>
+                    Our <span>Team</span>
+                </h2>
+
+                <p>
+                    Search and filter team members by department.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div class="controls">
+
+            <div class="search-box">
+
+                <span>🔍</span>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search by name or role..."
+                    onkeyup="filterMembers()"
+                >
+
+            </div>
+
+
+            <select
+                id="departmentFilter"
+                onchange="filterMembers()">
+
+                <option value="All">All Departments</option>
+
+                <option value="Management">
+                    🟣 Management
+                </option>
+
+                <option value="Development">
+                    🔵 Development
+                </option>
+
+                <option value="Design">
+                    🩷 Design
+                </option>
+
+                <option value="Marketing">
+                    🟠 Marketing
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- ORGANIZATIONAL CHART -->
+
+        <section class="organization">
+
+            <!-- CEO -->
+
+            <div class="ceo-wrapper">
+
+                <div class="person-card ceo-card">
+
+                    <div class="avatar avatar-purple">
+                        AK
+                    </div>
+
+                    <div class="person-info">
+
+                        <span class="position-tag">
+                            CEO
+                        </span>
+
+                        <h3>Alex Kumar</h3>
+
+                        <p>
+                            Chief Executive Officer
+                        </p>
+
+                    </div>
+
+                    <button onclick="openModal(0)">
+                        View Profile
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- MAIN CONNECTOR -->
+
+            <div class="main-line"></div>
+
+
+            <!-- DEPARTMENTS -->
+
+            <div class="departments" id="teamGrid">
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- MODAL -->
+
+    <div class="modal" id="memberModal">
+
+        <div class="modal-content">
+
+            <button class="close" onclick="closeModal()">
+                ×
+            </button>
+
+            <div
+                class="modal-avatar"
+                id="modalAvatar">
+                AK
+            </div>
+
+            <span
+                class="modal-department"
+                id="modalDepartment">
+                Management
+            </span>
+
+            <h2 id="modalName">
+                Alex Kumar
+            </h2>
+
+            <p
+                class="modal-role"
+                id="modalRole">
+                Chief Executive Officer
+            </p>
+
+
+            <div class="modal-details">
+
+                <div>
+                    <span>📧</span>
+
+                    <p>
+                        <strong>Email</strong>
+                        <br>
+                        <span id="modalEmail"></span>
+                    </p>
+
+                </div>
+
+
+                <div>
+                    <span>💼</span>
+
+                    <p>
+                        <strong>Experience</strong>
+                        <br>
+                        <span id="modalExperience"></span>
+                    </p>
+
+                </div>
+
+
+                <div>
+                    <span>🛠️</span>
+
+                    <p>
+                        <strong>Skills</strong>
+                        <br>
+                        <span id="modalSkills"></span>
+                    </p>
+
+                </div>
+
+
+                <div>
+                    <span>📝</span>
+
+                    <p>
+                        <strong>About</strong>
+                        <br>
+                        <span id="modalAbout"></span>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="contact-btn"
+                onclick="sendEmail()">
+
+                ✉ Contact Member
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-logo">
+            TeamSphere
+        </div>
+
+        <p>
+            Dynamic Team Member Directory
+        </p>
+
+        <span>
+            © 2026 TeamSphere. All Rights Reserved.
+        </span>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
