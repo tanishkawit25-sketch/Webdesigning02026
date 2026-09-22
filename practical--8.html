@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eaf2f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            width: 400px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2563eb;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #aaa;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 11px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+        }
+
+        #success {
+            color: green;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Student Registration</h2>
+
+    <form id="registrationForm">
+
+        <label>Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+        <div class="error" id="nameError"></div>
+
+        <label>Email</label>
+        <input type="text" id="email" placeholder="Enter your email">
+        <div class="error" id="emailError"></div>
+
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Minimum 6 characters">
+        <div class="error" id="passwordError"></div>
+
+        <label>Mobile Number</label>
+        <input type="text" id="mobile" placeholder="Enter 10-digit mobile number">
+        <div class="error" id="mobileError"></div>
+
+        <label>Course</label>
+        <select id="course">
+            <option value="">Select Course</option>
+            <option>B.Tech IT</option>
+            <option>B.Tech CSE</option>
+            <option>BCA</option>
+            <option>MCA</option>
+        </select>
+        <div class="error" id="courseError"></div>
+
+        <button type="submit">Register</button>
+
+        <div id="success"></div>
+    </form>
+</div>
+
+<script>
+    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        // Get values
+        let name = document.getElementById("name").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let password = document.getElementById("password").value;
+        let mobile = document.getElementById("mobile").value.trim();
+        let course = document.getElementById("course").value;
+
+        // Clear old messages
+        document.querySelectorAll(".error").forEach(function(error) {
+            error.innerHTML = "";
+        });
+
+        document.getElementById("success").innerHTML = "";
+
+        let valid = true;
+
+        // Name validation
+        if (name === "") {
+            document.getElementById("nameError").innerHTML =
+                "Name is required";
+            valid = false;
+        }
+
+        // Email validation
+        let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+        if (email === "") {
+            document.getElementById("emailError").innerHTML =
+                "Email is required";
+            valid = false;
+        } 
+        else if (!emailPattern.test(email)) {
+            document.getElementById("emailError").innerHTML =
+                "Enter a valid email address";
+            valid = false;
+        }
+
+        // Password validation
+        if (password === "") {
+            document.getElementById("passwordError").innerHTML =
+                "Password is required";
+            valid = false;
+        } 
+        else if (password.length < 6) {
+            document.getElementById("passwordError").innerHTML =
+                "Password must contain at least 6 characters";
+            valid = false;
+        }
+
+        // Mobile validation
+        let mobilePattern = /^[0-9]{10}$/;
+
+        if (mobile === "") {
+            document.getElementById("mobileError").innerHTML =
+                "Mobile number is required";
+            valid = false;
+        } 
+        else if (!mobilePattern.test(mobile)) {
+            document.getElementById("mobileError").innerHTML =
+                "Enter a valid 10-digit mobile number";
+            valid = false;
+        }
+
+        // Course validation
+        if (course === "") {
+            document.getElementById("courseError").innerHTML =
+                "Please select a course";
+            valid = false;
+        }
+
+        // Final result
+        if (valid) {
+            document.getElementById("success").innerHTML =
+                "Registration successful!";
+            
+            document.getElementById("registrationForm").reset();
+        }
+    });
+</script>
+
+</body>
+</html>
