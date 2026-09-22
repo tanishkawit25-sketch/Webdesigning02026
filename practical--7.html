@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College FAQ</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+
+        .faq {
+            width: 600px;
+            margin: 10px auto;
+            background-color: white;
+            border-radius: 5px;
+            padding: 15px;
+        }
+
+        .question {
+            font-weight: bold;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .answer {
+            display: none;
+            padding-top: 10px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 style="text-align:center;">College Department FAQ</h1>
+
+    <div class="faq">
+        <div class="question">1. What are the college working hours?</div>
+        <div class="answer">
+            College working hours are from 9:00 AM to 4:00 PM.
+        </div>
+    </div>
+
+    <div class="faq">
+        <div class="question">2. How can I apply for leave?</div>
+        <div class="answer">
+            Students can apply for leave through the college portal.
+        </div>
+    </div>
+
+    <div class="faq">
+        <div class="question">3. Where can I find the exam timetable?</div>
+        <div class="answer">
+            The exam timetable is available on the department notice board
+            and college website.
+        </div>
+    </div>
+
+    <div class="faq">
+        <div class="question">4. How can I contact the department?</div>
+        <div class="answer">
+            You can contact the department office during working hours.
+        </div>
+    </div>
+
+    <script>
+        // Get all questions
+        let questions = document.querySelectorAll(".question");
+
+        // Add click event to every question
+        questions.forEach(function(question) {
+
+            question.addEventListener("click", function() {
+
+                // Get the answer below the clicked question
+                let answer = this.nextElementSibling;
+
+                // Show or hide the answer
+                if (answer.style.display === "block") {
+                    answer.style.display = "none";
+                } else {
+                    answer.style.display = "block";
+                }
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>
