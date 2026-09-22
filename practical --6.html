@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Practical Grade Calculator</title>
+</head>
+<body>
+
+<h1>Practical Grade Calculator</h1>
+
+<p>
+  Lab Practical 1 (out of 100): <input type="number" id="p1" min="0" max="100"><br>
+  Lab Practical 2 (out of 100): <input type="number" id="p2" min="0" max="100"><br>
+  Viva / Oral Exam (out of 100): <input type="number" id="p3" min="0" max="100"><br>
+  <button onclick="calculateGrade()">Calculate Result</button>
+</p>
+
+<div id="result"></div>
+
+<script>
+function calculateGrade() {
+  const ids = ["p1", "p2", "p3"];
+  let marks = [];
+
+  for (let id of ids) {
+    let val = document.getElementById(id).value;
+    if (val === "" || isNaN(val) || val < 0 || val > 100) {
+      alert("Please enter valid marks (0-100) in all fields.");
+      return;
+    }
+    marks.push(Number(val));
+  }
+
+  const total = marks.reduce((sum, m) => sum + m, 0);
+  const maxTotal = marks.length * 100;
+  const percentage = (total / maxTotal) * 100;
+
+  let grade;
+  if (percentage >= 90) grade = "A+";
+  else if (percentage >= 80) grade = "A";
+  else if (percentage >= 70) grade = "B";
+  else if (percentage >= 60) grade = "C";
+  else if (percentage >= 50) grade = "D";
+  else if (percentage >= 40) grade = "E";
+  else grade = "F (Fail)";
+
+  document.getElementById("result").innerHTML = `
+    <p>Total Marks: ${total} / ${maxTotal}</p>
+    <p>Percentage: ${percentage.toFixed(2)}%</p>
+    <p>Grade: ${grade}</p>
+  `;
+}
+</script>
+
+</body>
+</html>
