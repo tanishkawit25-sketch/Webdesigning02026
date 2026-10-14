@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudySpark - Student Planner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100 text-slate-800">
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-violet-700 via-purple-600 to-indigo-600 text-white">
+    <div class="max-w-6xl mx-auto px-5 py-8 sm:py-10">
+      <p class="text-purple-200 font-semibold">YOUR PERSONAL STUDY SPACE ✨</p>
+      <h1 class="text-3xl sm:text-4xl font-extrabold mt-2">
+        StudySpark 📚
+      </h1>
+      <p class="mt-2 text-purple-100">
+        Plan smart, study better, achieve more!
+      </p>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto p-4 sm:p-6">
+
+    <!-- Welcome -->
+    <section class="mb-6">
+      <h2 class="text-2xl font-bold">Your Study Dashboard 🎯</h2>
+      <p class="text-slate-500 mt-1">
+        Organize your subjects and track your daily progress.
+      </p>
+    </section>
+
+    <!-- Statistics -->
+    <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-t-4 border-violet-500">
+        <p class="text-slate-500 text-sm">Total Tasks</p>
+        <p id="total" class="text-3xl font-extrabold text-violet-700 mt-2">0</p>
+        <p class="text-xs text-slate-400 mt-1">All study activities</p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-t-4 border-emerald-500">
+        <p class="text-slate-500 text-sm">Completed</p>
+        <p id="done" class="text-3xl font-extrabold text-emerald-600 mt-2">0</p>
+        <p class="text-xs text-slate-400 mt-1">Tasks finished</p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-t-4 border-orange-400">
+        <p class="text-slate-500 text-sm">Pending</p>
+        <p id="pending" class="text-3xl font-extrabold text-orange-500 mt-2">0</p>
+        <p class="text-xs text-slate-400 mt-1">Tasks to complete</p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-t-4 border-pink-500">
+        <p class="text-slate-500 text-sm">Progress</p>
+        <p id="percentage" class="text-3xl font-extrabold text-pink-600 mt-2">0%</p>
+        <div class="w-full bg-pink-100 rounded-full h-2 mt-3">
+          <div id="progressBar"
+            class="bg-pink-500 h-2 rounded-full transition-all duration-300"
+            style="width: 0%"></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Add Task -->
+    <section class="bg-white rounded-2xl shadow-sm p-5 sm:p-7 mb-6">
+      <h2 class="text-xl font-bold mb-5">➕ Add a Study Task</h2>
+
+      <form id="taskForm" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <div>
+          <label for="title" class="block text-sm font-semibold mb-2">
+            Task Name
+          </label>
+          <input id="title" type="text" maxlength="150"
+            placeholder="e.g. Revise Java OOP"
+            required
+            class="w-full border border-slate-200 rounded-xl p-3 focus:ring-2 focus:ring-violet-400 outline-none">
+        </div>
+
+        <div>
+          <label for="subject" class="block text-sm font-semibold mb-2">
+            Subject
+          </label>
+          <input id="subject" type="text" maxlength="60"
+            placeholder="e.g. Java Programming"
+            required
+            class="w-full border border-slate-200 rounded-xl p-3 focus:ring-2 focus:ring-violet-400 outline-none">
+        </div>
+
+        <div>
+          <label for="deadline" class="block text-sm font-semibold mb-2">
+            Deadline
+          </label>
+          <input id="deadline" type="date"
+            class="w-full border border-slate-200 rounded-xl p-3 focus:ring-2 focus:ring-violet-400 outline-none">
+        </div>
+
+        <div>
+          <label for="priority" class="block text-sm font-semibold mb-2">
+            Priority
+          </label>
+          <select id="priority"
+            class="w-full border border-slate-200 rounded-xl p-3 bg-white focus:ring-2 focus:ring-violet-400 outline-none">
+            <option value="High">🔴 High</option>
+            <option value="Medium" selected>🟡 Medium</option>
+            <option value="Low">🟢 Low</option>
+          </select>
+        </div>
+
+        <div class="sm:col-span-2 flex items-end">
+          <button type="submit"
+            class="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold p-3 rounded-xl transition">
+            + Add Study Task
+          </button>
+        </div>
+
+      </form>
+    </section>
+
+    <!-- Task List -->
+    <section class="bg-white rounded-2xl shadow-sm p-5 sm:p-7">
+
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
+        <h2 class="text-xl font-bold">📋 My Study Tasks</h2>
+
+        <input id="search" type="search"
+          placeholder="Search tasks or subjects..."
+          class="w-full sm:w-64 border border-slate-200 rounded-xl p-3 outline-none focus:ring-2 focus:ring-violet-400">
+      </div>
+
+      <div class="flex flex-wrap gap-2 mb-5">
+        <button data-filter="All" class="filter-btn rounded-lg px-4 py-2 font-semibold">All</button>
+        <button data-filter="Pending" class="filter-btn rounded-lg px-4 py-2 font-semibold">Pending</button>
+        <button data-filter="Completed" class="filter-btn rounded-lg px-4 py-2 font-semibold">Completed</button>
+      </div>
+
+      <div id="taskList" class="space-y-3"></div>
+
+      <p id="empty" class="hidden text-center text-slate-400 py-10">
+        No tasks found. Add a new study task to get started! 🌟
+      </p>
+
+      <div class="mt-6 flex justify-end">
+        <button id="clearDone"
+          class="text-sm font-semibold text-red-500 hover:text-red-700">
+          Clear Completed Tasks
+        </button>
+      </div>
+
+    </section>
+
+    <p id="notice" role="status" class="text-center text-sm text-slate-500 mt-5">
+      Your study journey starts here 💜
+    </p>
+
+  </main>
+
+  <footer class="text-center text-slate-400 text-sm py-5">
+    StudySpark © 2026 | Stay Focused, Keep Growing 🌱
+  </footer>
+
+  <script>
+    const $ = id => document.getElementById(id);
+
+    let tasks = [];
+    let filter = "All";
+
+    // Load saved tasks safely
+    try {
+      const saved = localStorage.getItem("studyspark_tasks");
+      const parsed = saved ? JSON.parse(saved) : [];
+      if (Array.isArray(parsed)) {
+        tasks = parsed.filter(t =>
+          t && typeof t.id === "string" &&
+          typeof t.title === "string" &&
+          typeof t.subject === "string" &&
+          typeof t.completed === "boolean" &&
+          ["High", "Medium", "Low"].includes(t.priority)
+        );
+      }
+    } catch (error) {
+      tasks = [];
+    }
+
+    function saveTasks() {
+      try {
+        localStorage.setItem("studyspark_tasks", JSON.stringify(tasks));
+        return true;
+      } catch (error) {
+        $("notice").textContent =
+          "Unable to save data. Check browser storage settings.";
+        return false;
+      }
+    }
+
+    function makeElement(tag, classes, content) {
+      const el = document.createElement(tag);
+      el.className = classes;
+      if (content !== undefined) el.textContent = content;
+      return el;
+    }
+
+    function render() {
+      $("taskList").replaceChildren();
+
+      const search = $("search").value.trim().toLowerCase();
+
+      const visible = tasks.filter(task => {
+        const matchesFilter =
+          filter === "All" ||
+          (filter === "Pending" && !task.completed) ||
+          (filter === "Completed" && task.completed);
+
+        const matchesSearch =
+          task.title.toLowerCase().includes(search) ||
+          task.subject.toLowerCase().includes(search);
+
+        return matchesFilter && matchesSearch;
+      });
+
+      visible.forEach(task => {
+        const card = makeElement(
+          "div",
+          "flex flex-col sm:flex-row sm:items-center gap-3 border border-slate-100 rounded-xl p-4 hover:bg-violet-50 transition"
+        );
+
+        const check = document.createElement("input");
+        check.type = "checkbox";
+        check.checked = task.completed;
+        check.setAttribute("aria-label", "Mark task completed");
+        check.className = "w-5 h-5 accent-violet-600 shrink-0 self-start sm:self-center";
+
+        check.addEventListener("change", () => {
+          task.completed = check.checked;
+          saveTasks();
+          render();
+        });
+
+        const info = makeElement("div", "flex-1 min-w-0");
+
+        const title = makeElement(
+          "p",
+          "font-bold break-words",
+          task.title
+        );
+
+        if (task.completed) {
+          title.classList.add("line-through", "text-slate-400");
+        }
+
+        const subject = makeElement(
+          "p", "text-sm text-slate-500 mt-1", task.subject
+        );
+
+        const meta = makeElement(
+          "p", "text-xs text-slate-400 mt-2",
+          task.deadline ? "Deadline: " + task.deadline : "No deadline set"
+        );
+
+        const badges = makeElement("div", "flex flex-wrap gap-2 mt-2");
+
+        const priorityColors = {
+          High: "bg-red-100 text-red-700",
+          Medium: "bg-amber-100 text-amber-700",
+          Low: "bg-emerald-100 text-emerald-700"
+        };
+
+        badges.appendChild(makeElement(
+          "span",
+          "text-xs px-2 py-1 rounded-full font-semibold " +
+            priorityColors[task.priority],
+          task.priority + " Priority"
+        ));
+
+        badges.appendChild(makeElement(
+          "span",
+          "text-xs px-2 py-1 rounded-full font-semibold " +
+            (task.completed
+              ? "bg-emerald-100 text-emerald-700"
+              : "bg-violet-100 text-violet-700"),
+          task.completed ? "Completed" : "Pending"
+        ));
+
+        info.append(title, subject, meta, badges);
+
+        const remove = makeElement(
+          "button",
+          "bg-red-50 hover:bg-red-100 text-red-600 rounded-lg px-4 py-2 text-sm font-semibold self-start sm:self-center",
+          "Delete"
+        );
+
+        remove.setAttribute("aria-label", "Delete " + task.title);
+
+        remove.addEventListener("click", () => {
+          tasks = tasks.filter(t => t.id !== task.id);
+          saveTasks();
+          render();
+          $("notice").textContent = "Task deleted.";
+        });
+
+        card.append(check, info, remove);
+        $("taskList").appendChild(card);
+      });
+
+      const total = tasks.length;
+      const completed = tasks.filter(t => t.completed).length;
+      const pending = total - completed;
+      const percent = total ? Math.round(completed / total * 100) : 0;
+
+      $("total").textContent = total;
+      $("done").textContent = completed;
+      $("pending").textContent = pending;
+      $("percentage").textContent = percent + "%";
+      $("progressBar").style.width = percent + "%";
+
+      $("empty").classList.toggle("hidden", visible.length !== 0);
+
+      document.querySelectorAll(".filter-btn").forEach(button => {
+        const active = button.dataset.filter === filter;
+        button.className = active
+          ? "filter-btn rounded-lg px-4 py-2 font-semibold bg-violet-600 text-white"
+          : "filter-btn rounded-lg px-4 py-2 font-semibold bg-slate-100 text-slate-600 hover:bg-violet-100";
+      });
+    }
+
+    $("taskForm").addEventListener("submit", event => {
+      event.preventDefault();
+
+      const title = $("title").value.trim();
+      const subject = $("subject").value.trim();
+      const deadline = $("deadline").value;
+      const priority = $("priority").value;
+
+      if (!title || !subject) {
+        $("notice").textContent = "Please enter the task and subject.";
+        return;
+      }
+
+      if (deadline && deadline < new Date().toLocaleDateString("en-CA")) {
+        $("notice").textContent = "Please select today or a future deadline.";
+        return;
+      }
+
+      tasks.push({
+        id: crypto.randomUUID(),
+        title,
+        subject,
+        deadline,
+        priority,
+        completed: false
+      });
+
+      saveTasks();
+      $("taskForm").reset();
+      $("priority").value = "Medium";
+      $("search").value = "";
+      filter = "All";
+      render();
+      $("notice").textContent = "Great! Your study task has been added. 🎉";
+    });
+
+    document.querySelectorAll(".filter-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        filter = button.dataset.filter;
+        render();
+      });
+    });
+
+    $("search").addEventListener("input", render);
+
+    $("clearDone").addEventListener("click", () => {
+      tasks = tasks.filter(task => !task.completed);
+      saveTasks();
+      render();
+      $("notice").textContent = "Completed tasks cleared.";
+    });
+
+    render();
+  </script>
+
+</body>
+</html>
